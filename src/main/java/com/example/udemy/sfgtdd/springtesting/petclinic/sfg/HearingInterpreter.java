@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class HearingInterpreter {
 
-    private final WordProducer wordProducer;
+    private WordProducer wordProducer;
 
     public HearingInterpreter(WordProducer wordProducer) {
         this.wordProducer = wordProducer;
