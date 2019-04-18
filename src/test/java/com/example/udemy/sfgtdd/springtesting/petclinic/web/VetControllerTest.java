@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -18,6 +20,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(MockitoExtension.class)
 class VetControllerTest {
@@ -29,10 +33,22 @@ class VetControllerTest {
 
     private VetController vetController;
 
+    private MockMvc mockMvc;
+
     @BeforeEach
     void setUp() {
         vetController = new VetController(clinicService);
         given(clinicService.findVets()).willReturn(Arrays.asList(new Vet()));
+        mockMvc = MockMvcBuilders.standaloneSetup(vetController).build();
+    }
+
+    @Test
+    void showVetListMvc() throws Exception {
+        mockMvc.perform(get("/vets.html"))
+                .andExpect(status().isOk())
+                .andExpect(model().attributeExists("vets"))
+                .andExpect(view().name("vets/vetList"));
+        then(clinicService).should().findVets();
     }
 
     @Test
