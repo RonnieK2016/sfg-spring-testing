@@ -41,7 +41,6 @@ public class PetTypeFormatter implements Formatter<PetType> {
 
     private final ClinicService clinicService;
 
-
     @Autowired
     public PetTypeFormatter(ClinicService clinicService) {
         this.clinicService = clinicService;

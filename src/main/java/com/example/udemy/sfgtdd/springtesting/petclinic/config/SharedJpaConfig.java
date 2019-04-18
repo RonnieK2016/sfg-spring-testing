@@ -61,7 +61,7 @@ public class SharedJpaConfig {
         em.setDataSource(dataSource);
         // gDickens: BOTH Persistence Unit and Packages to Scan are NOT compatible, persistenceUnit will win
         em.setPersistenceUnitName("petclinic");
-        em.setPackagesToScan("org.springframework.samples.petclinic");
+        em.setPackagesToScan("com.example.udemy.sfgtdd.springtesting.petclinic");
         em.setJpaVendorAdapter(jpaVendorAdaper());
         em.afterPropertiesSet();
         return em.getObject();

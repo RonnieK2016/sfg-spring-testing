@@ -14,7 +14,7 @@
     </appender>
 
     <!--<logger name="org.hibernate" level="debug"/> -->
-    <logger name="org.springframework.samples.petclinic" level="debug"/>
+    <logger name="com.example.udemy.sfgtdd.springtesting.petclinic" level="debug"/>
 
     <root level="info">
         <appender-ref ref="console"/>
